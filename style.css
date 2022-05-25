@@ -1,0 +1,124 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+/* Dando otro estilo al tag h1 */
+h1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+/* Clase contenedor que es el padre de todas los demas elemntos dentro de nuestro body */
+.contenedor {
+    width: 90%;
+    margin: auto;
+    max-width:1000px;
+    /* Haciendo el contenedor flexible*/
+    display: flex;
+    /* nos pone los elementos en columna */
+    flex-direction: column;
+    /* si un elemnto no cabe, se va poniendo abajo del otro */
+    flex-wrap: wrap;
+}
+
+/* Clase encabezado (hijo de contenedor)*/
+.header{
+    background-color: gray;
+    /* Siempre tomara el mismo ancho que el contenedor */
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    /* Deja un espacio entre los elementos */
+    justify-content: space-between;
+    /* Alinea en el centro */
+    align-items: center;
+    /* nos pone los elementos en linea */
+    flex-direction: row; 
+    flex-wrap: wrap;
+}
+/* Clase Logo (hijo de header)*/
+.header .logo{
+    color: black;
+    font-size: 20px;
+}
+/* Clase nav (hijo de header)*/
+.header .nav{
+    background:gray;
+    width: 40%;
+
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+}
+/* Propiedades solo a los tag a dentro de la clase nav */
+.header .nav a{
+    color:white;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* hace que los elementos crezcan hasta ocupar todo el ancho del contenedor */
+    flex-grow: 1;
+}
+/* Clase principal (hijo de contenedor) */
+.main{
+    background-color: white;
+    padding: 20px;
+    /* Siempre tomara el mismo ancho que el contenedor */
+    width: 100%;
+}
+.tienda{
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    margin: 0px;
+    background-color: blue;
+}
+.foto{
+    padding-right: 12px;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: rosybrown;
+}
+.datos{
+    flex: 1 1 0%;
+    overflow: hidden;
+}
+.calificaciones{
+    padding-top: 13px;
+    position: relative;
+    background-color: yellow;
+}
+/* clase footer (hijo de contenedor) */
+.footer{
+    background-color: rgb(244, 196, 102);
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    /* Deja un espacio entre los elementos */
+    justify-content: space-between;
+    /* nos pone los elementos en linea */
+    flex-direction: row; 
+    /* si un elemnto no cabe, se va poniendo abajo del otro */
+    flex-wrap: wrap;
+} 
+/* clase redes (hijo de footer) */
+.footer .redes{
+    background:rgb(244, 196, 102);
+    width: 50%;
+
+    display: flex;
+    flex-wrap: wrap; 
+}
+/* Propiedades solo a los tag a dentro de la clase redes */
+.footer .redes a {
+	color: white;
+	padding:10px;
+	text-align: center;
+} 
