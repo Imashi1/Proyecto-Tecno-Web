@@ -3,36 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>UH, TA' RICO</title>
+    <!-- Usando Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- Conexion con la hoja de estilo STYLE -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="contenedor">
-        <header class="header">
-            <a href="#" class="logo">UH TA' 
-
-            </a>
-            <nav class="nav">
-                <a href="#"><input class="flexsearch--input" type="Buscar" placeholder="search"></a>
-                <a href="#">Registra tu negocio</a>
-            </nav>
-        </header>
-        <main class="main">
-            <div class="tienda">
-                <div class="foto"><img src="https://images.deliveryhero.io/image/pedidosya/restaurants/d-cajon-peruano.jpg?quality=70&amp;width=100" class="sc-11h6bs4-0 byKNUF sc-16krbne-0 sc-54vgxs-1 dyVoQy ls-is-cached lazyloaded" alt="D'cajon Peruano" data-src="https://images.deliveryhero.io/image/pedidosya/restaurants/d-cajon-peruano.jpg?quality=70&amp;width=100" data-srcset="https://images.deliveryhero.io/image/pedidosya/restaurants/d-cajon-peruano.jpg?quality=70&amp;width=100, https://images.deliveryhero.io/image/pedidosya/restaurants/d-cajon-peruano.jpg?quality=70&amp;width=100&amp;dpi=1.5 1.5x" srcset="https://images.deliveryhero.io/image/pedidosya/restaurants/d-cajon-peruano.jpg?quality=70&amp;width=100, https://images.deliveryhero.io/image/pedidosya/restaurants/d-cajon-peruano.jpg?quality=70&amp;width=100&amp;dpi=1.5 1.5x"></div>
-                <div class="datos">veegvrgv</div>
-                <div class="calificaciones">btyybnt</div>
-            </div>
-
-
-        </main>
-        <!-- Uso del footer -->
-        <footer class="footer">
-            <section class="redes">
-                <a href="#">Contacto</a>
-                <a href="#">Facebook</a>
+          <!-- SECCION NAVEGACIÓN-->
+        <nav class="navbar navbar-dark bg-primary navbar-expand-md fixed-top col-12">
+            <div class="container">      
+                <a href="#" class="navbar-brand">
+                  <strong>UTARICO</strong>
+                </a>
+          
+                  <button type="button" class="navbar-toggler" data-toggle="collapse"
+                  data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false"
+                  aria-label="Desplegar menú de navegación">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+                <div class="collapse navbar-collapse" id="menu-principal">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="#" class="nav-link">¿Quien soy?</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Proyectos</a></li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+                  </form>
+                </div>
+              </div>
+        </nav>
+        <!-- Seccion principal donde se encuentran los articulos -->
+            <section class="principal">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-3">
+                                    <img src="arroz.jpg" alt="...">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                    <h5 class="card-title">LOCAL BONITO</h5>
+                                    <p class="card-text">This is a widera little bit longer.</p>
+                                    <a href="#" class="btn btn-primary">Ver Mas</a>
+                                    <a href="#" class="btn btn-primary">Buscar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-3">
+                                    <img src="arroz.jpg" alt="...">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                    <h5 class="card-title">LOCAL BONITO</h5>
+                                    <p class="card-text">This is a widera little bit longer.</p>
+                                    <a href="#" class="btn btn-primary">Ver Mas</a>
+                                    <a href="#" class="btn btn-primary">Buscar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-3">
+                                    <img src="arroz.jpg" alt="...">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                    <h5 class="card-title">LOCAL BONITO</h5>
+                                    <p class="card-text">This is a widera little bit longer.</p>
+                                    <a href="#" class="btn btn-primary">Ver Mas</a>
+                                    <a href="#" class="btn btn-primary">Buscar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div>
+                            mapa
+                        </div>
+                    </div>
+                </div>               
             </section>
+        <!-- Uso del aside -->
+
+        <!-- Uso del footer -->
+        <footer class="pie-de-pagina text-center text-md-right bg-primary text-white">
+            <div class="container">
+                <p class="m-0 py-3">Copyright © 2018. Todos los derechos reservados. </p>
+            </div>
         </footer>
-    </div>
 </body>
 </html>
