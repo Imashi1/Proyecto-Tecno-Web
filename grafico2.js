@@ -1,15 +1,13 @@
-//chart.js para un grafico de torta usando información obtenida de json.js
-import {colores, valores} from './json.js'
 
-var pizza = 10;
+
 const ctx2 = document.getElementById('migrafico2').getContext('2d');
 const migrafico2 = new Chart(ctx2, {
     type: 'pie',
     data: {
-        labels: colores,
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
             label: '# of Votes',
-            data: valores,
+            data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -17,7 +15,6 @@ const migrafico2 = new Chart(ctx2, {
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
-                'rgba(230, 159, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -26,7 +23,6 @@ const migrafico2 = new Chart(ctx2, {
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
-                'rgba(230, 159, 64, 1)'
             ],
             borderWidth: 1
         }]
