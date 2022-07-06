@@ -19,8 +19,8 @@
 		$row  = mysqli_fetch_array($sql);
 
         //Realizamos la consulta para obtener todas las filas de la tabla productos
-        $mostrar_todo = "SELECT id, nombre, apellido, correo, fecha_creacion FROM proyecto.usuarios";
-        $usuarios = $conn->query($mostrar_todo);
+        $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos";
+        $platos = $conn->query($mostrar_todo);
     ?>
 </head>
 
@@ -49,44 +49,29 @@
         </nav>
     </header>
     
-    <h1>Bienvenido <?php echo $_SESSION["nombre"] ?> <?php echo $_SESSION["apellido"] ?></p></h1>
     <div class="container">
         <div class="row">
-            <div class="container mt-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>apellido</th>
-                                    <th>Correo</th>
-                                    <th>Fecha Creacion</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($usuarios as $usuario) { ?>
-                                <tr>
-
-                                    <td><?php echo $usuario['nombre']; ?></td>
-                                    <td><?php echo $usuario['apellido']; ?></td>
-                                    <td><?php echo $usuario['correo']; ?></td>
-                                    <td><?php echo $usuario['fecha_creacion']; ?></td>
-                                    <td>
-                                        <a name='id' class="btn btn-info" href="../user/edit_user_form.php?id='<?php echo $usuario['id']; ?>'">Editar</a>
-                                        <a name='id' type="submit" method="POST" class="btn btn-danger" href="../user/delete.php?id='<?php echo $usuario['id']; ?>'">Eliminar</a>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
+            <div class="col-12 col-md-6">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <?php foreach ($platos as $plato) { ?>
+                            <div class="col-md-3">
+                            <img src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
+                                <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
+                                <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
+                                <a href="#" class="btn btn-success">Agregar</a>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
-
     <?php 
     //Cerramos la conexión
     $conn->close(); 

@@ -12,7 +12,7 @@
             $_SESSION["correo"]=$row['correo'];
             $_SESSION["nombre"]=$row['nombre'];
             $_SESSION["apellido"]=$row['apellido']; 
-            header("Location: dashboard.php"); 
+            header("Location: ../vendor/dashboard_vendor_user.php"); 
         }
         else
         {
