@@ -30,40 +30,42 @@
         foreach ($vendedor as $vend_array) {
         }
     ?>
-    <div class="signup-form">
-            <h2>Añadir Plato para vendedor <?php echo $vend_array['nombreTienda']?></h2>
-            <p class="hint-text">Información del Plato</p>
-        <form action="dish_add_trigger.php" method="post" enctype="multipart/form-data">
-            
+        <div class="principal">
+        <div class="signup-form">
+            <form action="dish_add_trigger.php" method="post" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
+                <h2>Añadir Plato para vendedor <?php echo $vend_array['nombreTienda']?></h2>
+                <p class="hint-text">Información del Plato</p>
+                <form action="register.php" method="POST" enctype="multipart/form-data">
 
-            <div class="form-group">
-                <label for="nombreTienda">Nombre Plato:</label>
-                <input type="text" class="form-control" name="nombrePlato" id="nombrePlato" placeholder="Nombre de la Tienda" required>
-            </div>
+                <div class="form-group">
+                    <label for="nombreTienda">Nombre Plato</label>
+                    <input type="text" class="form-control" name="nombrePlato" id="nombrePlato" placeholder="Nombre de la Tienda" required>
+                </div>
 
-            <div class="form-group">
-                <label for="descripcion">Descripción del Plato:</label>
-                <input type="textarea" class="form-control" name="descripcionPlato" id="descripcionPlato" placeholder="Descripción del Plato" required>
-            </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción del Plato</label>
+                    <input type="textarea" class="form-control" name="descripcionPlato" id="descripcionPlato" placeholder="Descripción del Plato" required>
+                </div>
 
-            <div class="form-group">
-                <label for="nombreTienda">Precio:</label>
-                <input type="text" class="form-control" name="precioPlato" id="precioPlato" placeholder="Precio del Plato" required>
-            </div>
+                <div class="form-group">
+                    <label for="nombreTienda">Precio</label>
+                    <input type="text" class="form-control" name="precioPlato" id="precioPlato" placeholder="Precio del Plato" required>
+                </div>
 
-            <div class="form-group">
-                <label for="imagen">Imagen:</label>
-                <input type="file" class="form-control" name="imagenPlato" id="imagenPlato"/>
-            </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input type="file" class="form-control-file" name="imagenPlato" id="imagenPlato"/>
+                </div>
 
 
 
-            <!--Input extra escondido para obtener el id y con el, poder utilizarlo en editar.php-->
-            <input type="hidden" class="form-control" value="<?php echo $id; ?>" name="idUbicacion">
-            
+                <!--Input extra escondido para obtener el id y con el, poder utilizarlo en editar.php-->
+                <input type="hidden" class="form-control" value="<?php echo $id; ?>" name="idUbicacion">
+                
 
-            <button type="submit" name="accion" value="editar" class="btn btn-primary">Añadir</button>
-        </form>
+                <button type="submit" name="accion" value="editar" class="btn btn-primary">Añadir</button>
+            </form>
+        </div>
     </div>
     <footer>
         <nav class="navbar navbar-dark bg-primary justify-content-end">
