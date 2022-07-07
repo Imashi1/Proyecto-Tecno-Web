@@ -15,11 +15,12 @@
 		session_start();
 		include("../conexion.php");
 		$ID= $_SESSION["id"];
+        $idUbicacion = $_GET["id"];
 		$sql=mysqli_query($conn,"SELECT * FROM proyecto.administradores where id='$ID' ");
 		$row  = mysqli_fetch_array($sql);
 
         //Realizamos la consulta para obtener todas las filas de la tabla productos
-        $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos";
+        $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos WHERE idUbicaciones = $idUbicacion ";
         $platos = $conn->query($mostrar_todo);
     ?>
 </head>
@@ -63,7 +64,8 @@
                                 <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
                                 <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
                                 <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
-                                <a href="#" class="btn btn-success">Agregar</a>
+                                <a href="dish_add.php" class="btn btn-success">Agregar</a>
+                                <a href="dish_delete_trigger.php?id='<?php echo $plato['idPlato']; ?>'" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
                         <?php } ?>

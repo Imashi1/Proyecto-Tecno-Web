@@ -65,7 +65,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $ubicacion['nombreTienda'];?></h5>
                                     <p class="card-text"><?php echo $ubicacion['descripcionTienda']; ?>, <?php echo $ubicacion['latitud']; ?>, <?php echo $ubicacion['longitud']; ?></p>
-                                    <a href="../dish/dish_dashboard.php" class="btn btn-primary">Ver Mas</a>
+                                    <a href="../dish/dish_dashboard.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Mas</a>
                                     <a href="../dish/dish_add.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-success">Añadir Plato</a>
                                 </div>
                             </div>

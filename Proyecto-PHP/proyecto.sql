@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2022 a las 23:28:14
+-- Tiempo de generación: 07-07-2022 a las 22:32:36
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -63,7 +63,9 @@ CREATE TABLE `platos` (
 --
 
 INSERT INTO `platos` (`idPlato`, `nombrePlato`, `descripcionPlato`, `imagenPlato`, `precioPlato`, `idUbicaciones`) VALUES
-(1, 'hola', 'no hay platp', '1657139747_finale.jpg', 2000, 1);
+(1, 'hola', 'no hay platp', '1657139747_finale.jpg', 2000, 1),
+(7, 'plato', 'plato', 'notfound.jpg', 2000, 1),
+(15, 'hola', 'buen plato', '1657225377_Diagramas Informe 2-Arquitectura del sistema logica.drawio.png', 2000, 3);
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,8 @@ INSERT INTO `ubicaciones` (`id`, `nombreTienda`, `descripcionTienda`, `imagen`, 
 (5, 'Tienda Prueba 5', 'asdfasdfasf', '', -18.490538397844475, -70.29668090035102, 1),
 (6, 'Tienda Prueba 6', 'Mala descripción', '', -18.489277279228375, -70.2949894044046, 1),
 (7, 'Tienda Prueba 7', 'Ahora con imagen', '1656957833_finale.jpg', -18.490373624745004, -70.295722694086, 1),
-(8, 'Tienda Prueba 8', 'Sin imagen', 'notfound.jpg', -18.489204822382675, -70.2957781529698, 1);
+(8, 'Tienda Prueba 8', 'Sin imagen', 'notfound.jpg', -18.489204822382675, -70.2957781529698, 1),
+(9, 'Tienda Prueba 9', 'Buena Tienda 9', 'notfound.jpg', -18.490899583206755, -70.29619717564512, 1);
 
 -- --------------------------------------------------------
 
@@ -145,7 +148,7 @@ ALTER TABLE `administradores`
 --
 ALTER TABLE `platos`
   ADD PRIMARY KEY (`idPlato`),
-  ADD KEY `fk_ubicacion` (`idUbicaciones`);
+  ADD KEY `fk_ubicacion` (`idUbicaciones`) USING BTREE;
 
 --
 -- Indices de la tabla `ubicaciones`
@@ -174,13 +177,13 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `platos`
 --
 ALTER TABLE `platos`
-  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicaciones`
 --
 ALTER TABLE `ubicaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -196,7 +199,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `platos`
 --
 ALTER TABLE `platos`
-  ADD CONSTRAINT `fk_ubicacion` FOREIGN KEY (`idUbicaciones`) REFERENCES `platos` (`idPlato`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_ubicacion` FOREIGN KEY (`idUbicaciones`) REFERENCES `ubicaciones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ubicaciones`

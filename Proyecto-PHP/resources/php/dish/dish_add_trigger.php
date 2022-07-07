@@ -1,6 +1,8 @@
 <?php
     extract($_POST);
     include("../conexion.php");
+    echo $idUbicacion;
+
     $imagen = (isset($_FILES['imagenPlato']['name'])) ? $_FILES['imagenPlato']['name'] : "";
     $fecha = new DateTime();
     $nombreArchivo = ($imagen != "") ? $fecha->getTimestamp() . "_" . $_FILES["imagenPlato"]["name"] : "notfound.jpg";
@@ -10,8 +12,8 @@
         //Si la imagen no es vacía, procedemos a subir la imagen con nombre $nombreArchivo
         move_uploaded_file($tmpImagen, "../../../img/" . $nombreArchivo);
     }
-    $insertar = "INSERT INTO proyecto.platos (nombrePlato, descripcionPlato, imagenPlato, precioPlato, idUbicaciones) 
-    VALUES ('$nombrePlato', '$descripcionPlato', '$nombreArchivo', $precioPlato, $idUbicacion)";
+    $insertar = "INSERT INTO platos (nombrePlato, descripcionPlato, imagenPlato, precioPlato, idUbicaciones) 
+    VALUES ('$nombrePlato', '$descripcionPlato', '$nombreArchivo', $precioPlato,  $idUbicacion)";
 
     //Verificamos que se haya realizado la inserción
     if ($conn->query($insertar) === TRUE) {
