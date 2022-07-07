@@ -21,6 +21,14 @@
             width: 100%;
             height: 80%;
         }
+                /* Clase principal (hijo de contenedor) */
+                .principal{
+            /* margin-top: 50px; */
+            background-color: white;
+            padding: 20px;
+            /* Siempre tomara el mismo ancho que el contenedor */
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -53,33 +61,34 @@
     <section class="principal">
         <div class="row">
             <div class="col-12 col-md-6">
-                <form action="register.php" method="POST" enctype="multipart/form-data">
+
+
+                <form action="register.php" method="POST" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
 
                     <div class="form-group">
-                        <label for="nombreTienda">Nombre Tienda:</label>
+                        <label for="nombreTienda">Nombre</label>
                         <input type="text" class="form-control" name="nombreTienda" id="nombreTienda" placeholder="Nombre de la Tienda" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
+                        <label for="descripcion">Descripción</label>
                         <input type="textarea" class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="imagen">Imagen:</label>
-                        <input type="file" class="form-control" name="imagen" id="imagen" />
+                        <label for="imagen">Imagen</label>
+                        <input type="file" class="form-control-file" name="imagen" id="imagen" />
                     </div>
 
                     <div class="form-group">
-                        <label for="latitud">Latitud:</label>
+                        <label for="latitud">Latitud</label>
                         <input type="text" class="form-control" name="latitud" id="latitud" readonly required>
                     </div>
 
                     <div class="form-group">
-                        <label for="longitud">longitud:</label>
+                        <label for="longitud">Longitud</label>
                         <input type="text" class="form-control" name="longitud" id="longitud" readonly required>
                     </div>
-
 
                     <!--Input extra escondido para obtener el id y con el, poder utilizarlo en editar.php-->
                     <input type="hidden" class="form-control" value="<?php echo $id; ?>" name="id">
