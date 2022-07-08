@@ -17,36 +17,39 @@
 </head>
 
 <body>
-    <div class="signup-form">
-        <form action="../../php/admin/register.php" method="post" enctype="multipart/form-data">
-            <h2>Registro</h2>
-            <p class="hint-text">Crea tu cuenta</p>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col"><input type="text" class="form-control" name="nombre" placeholder="Nombre" required="required"></div>
-                    <div class="col"><input type="text" class="form-control" name="apellido" placeholder="Apellido" required="required"></div>
-                </div>
+    <div class="principal">
+        <div class="container">
+            <div class="signup-form">
+                <form action="../../php/admin/register.php" class="form-signin text-center  bg-light my-3 p-3 border rounded" method="post" enctype="multipart/form-data">
+                    <h2>Registro</h2>
+                    <p class="hint-text">Crea tu cuenta</p>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col"><input type="text" class="form-control" name="nombre" placeholder="Nombre" required="required"></div>
+                            <div class="col"><input type="text" class="form-control" name="apellido" placeholder="Apellido" required="required"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="contra" placeholder="Contraseña" required="required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="contra_confirmar" placeholder="Confirmar Contraseña" required="required">
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a></label>
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <button type="submit" name="guardar" class="btn btn-success btn-lg btn-block">Registrarse</button>
+                    </div>
+                    <div class="text-center">Ya tienes una cuenta? <a href="login.html">Ingresar</a></div>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email" required="required">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" name="contra" placeholder="Contraseña" required="required">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" name="contra_confirmar" placeholder="Confirmar Contraseña" required="required">
-            </div>
-            <!--
-            <div class="form-group">
-                <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a></label>
-            </div>
-            -->
-            <div class="form-group">
-                <button type="submit" name="guardar" class="btn btn-success btn-lg btn-block">Registrarse</button>
-            </div>
-            <div class="text-center">Ya tienes una cuenta? <a href="login.html">Ingresar</a></div>
-        </form>
-
+        </div>
     </div>
 </body>
 
