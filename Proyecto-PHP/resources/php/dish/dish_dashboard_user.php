@@ -15,12 +15,13 @@
 		session_start();
 		include("../conexion.php");
 		$ID= $_SESSION["id"];
-		$sql=mysqli_query($conn,"SELECT * FROM proyecto.administradores where id='$ID' ");
+        $idUbicacion = $_GET["id"];
+		$sql=mysqli_query($conn,"SELECT * FROM proyecto.usuarios where id='$ID' ");
 		$row  = mysqli_fetch_array($sql);
 
         //Realizamos la consulta para obtener todas las filas de la tabla productos
-        $mostrar_todo = "SELECT id, nombre, apellido, correo, fecha_creacion FROM proyecto.usuarios";
-        $usuarios = $conn->query($mostrar_todo);
+        $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos WHERE idUbicaciones = $idUbicacion ";
+        $platos = $conn->query($mostrar_todo);
     ?>
 </head>
 
@@ -28,7 +29,7 @@
     <header>
         <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
             <div class="container">      
-                <a href="main.html" class="navbar-brand">
+                <a href="../user/user_main_dashboard.php" class="navbar-brand">
                   <strong>UTARICO</strong>
                 </a>
                   <button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -40,53 +41,36 @@
                 <div class="collapse navbar-collapse" id="menu-principal">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
-                    <li class="nav-item"><a href="../vendor/dashboard_vendor_admin.php" class="nav-link">Ver Tiendas</a></li>
-                    <li class="nav-item"><a href="../vendor/add_vendor_form.php?id='<?php echo $ID; ?>'" class="nav-link">Agregar Tienda</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link">Cerrar Sesión</a></li>
+                    <li class="nav-item"><a href="../user/user_main_dashboard.php" class="nav-link">Ver Tiendas</a></li>
+                    <li class="nav-item"><a href="../user/user_logout.php" class="nav-link">Cerrar Sesión</a></li>
                   </ul>
                 </div>
             </div>
         </nav>
     </header>
     
-    <h1>Bienvenido <?php echo $_SESSION["nombre"] ?> <?php echo $_SESSION["apellido"] ?></p></h1>
     <div class="container">
         <div class="row">
-            <div class="container mt-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>apellido</th>
-                                    <th>Correo</th>
-                                    <th>Fecha Creacion</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($usuarios as $usuario) { ?>
-                                <tr>
-
-                                    <td><?php echo $usuario['nombre']; ?></td>
-                                    <td><?php echo $usuario['apellido']; ?></td>
-                                    <td><?php echo $usuario['correo']; ?></td>
-                                    <td><?php echo $usuario['fecha_creacion']; ?></td>
-                                    <td>
-                                        <a name='id' class="btn btn-info" href="../user/edit_user_form.php?id='<?php echo $usuario['id']; ?>'">Editar</a>
-                                        <a name='id' type="submit" method="POST" class="btn btn-danger" href="../user/delete.php?id='<?php echo $usuario['id']; ?>'">Eliminar</a>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
+            <div class="col-12 col-md-6">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <?php foreach ($platos as $plato) { ?>
+                            <div class="col-md-3">
+                            <img class="card-img-top" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
+                                <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
+                                <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
-
     <?php 
     //Cerramos la conexión
     $conn->close(); 
@@ -94,7 +78,7 @@
     ?>
     <footer>
         <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="main.html"> Página Principal</a>
+            <a class="navbar-brand" href="../user/user_main_dashboard.php"> Página Principal</a>
         </nav>
     </footer>
 

@@ -40,7 +40,7 @@
     <!-- SECCION NAVEGACIÓN-->
     <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
         <div class="container">
-            <a href="main.html" class="navbar-brand">
+            <a href="../admin/admin_main_dashboard.php" class="navbar-brand">
                 <strong>UTARICO</strong>
             </a>
 
@@ -51,8 +51,7 @@
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
-                    <li class="nav-item"><a href="main.html" class="nav-link">Mi Cuenta</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link">Cerrar Sesión</a></li>
+                    <li class="nav-item"><a href="../admin/admin_logout.php" class="nav-link">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +62,7 @@
             <div class="col-12 col-md-6">
 
 
-                <form action="register.php" method="POST" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
+                <form action="vendor_register_trigger.php" method="POST" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
 
                     <div class="form-group">
                         <label for="nombreTienda">Nombre</label>
@@ -94,7 +93,7 @@
                     <input type="hidden" class="form-control" value="<?php echo $id; ?>" name="id">
                     
 
-                    <button type="submit" name="accion" value="editar" class="btn btn-primary">Editar</button>
+                    <button type="submit" name="accion" value="editar" class="btn btn-success">Agregar</button>
                 </form>
             </div>
             <div class="col-12 col-md-6">
@@ -199,11 +198,12 @@
     <!-- Uso del aside -->
 
     <!-- Uso del footer -->
-    <footer class="pie-de-pagina text-center text-md-right bg-primary fixed-bottom text-white">
-        <div class="container">
-            <p class="m-0 py-3">UTARICO © </p>
-        </div>
+    <footer>
+        <nav class="navbar navbar-dark bg-primary justify-content-end">
+            <a class="navbar-brand" href="../admin/admin_main_dashboard.php"> Página Principal</a>
+        </nav>
     </footer>
+
 
 </body>
 

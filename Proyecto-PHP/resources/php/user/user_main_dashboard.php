@@ -25,10 +25,17 @@
 </head>
 
 <body>
+    <?php
+        session_start();
+        include("../conexion.php");
+        $ID= $_SESSION["id"];
+        $mostrar_todo = "SELECT id, nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
+        $ubicaciones = $conn->query($mostrar_todo); 
+    ?>
     <!-- SECCION NAVEGACIÓN-->
     <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
         <div class="container">
-            <a href="../admin/dashboard.php" class="navbar-brand">
+            <a href="user_main_dashboard.php" class="navbar-brand">
                 <strong>UTARICO</strong>
             </a>
 
@@ -39,8 +46,7 @@
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
-                    <li class="nav-item"><a href="main.html" class="nav-link">Mi Cuenta</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link">Cerrar Sesión</a></li>
+                    <li class="nav-item"><a href="user_logout.php" class="nav-link">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -49,25 +55,18 @@
     <section class="principal">
         <div class="row">
             <div class="col-12 col-md-6">
-                <?php
-                    session_start();
-                    include("../conexion.php");
-                    $mostrar_todo = "SELECT id, nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
-                    $ubicaciones = $conn->query($mostrar_todo); 
-                ?>
+                
                 <?php foreach ($ubicaciones as $ubicacion) { ?>
                     <div class="card mb-3">
                         <div class="row no-gutters">
                             <div class="col-md-3">
-                                <img src="../../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Vendedor">
+                                <img class="card-img-top" src="../../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Tienda">
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $ubicacion['nombreTienda'];?></h5>
                                     <p class="card-text"><?php echo $ubicacion['descripcionTienda']; ?>, <?php echo $ubicacion['latitud']; ?>, <?php echo $ubicacion['longitud']; ?></p>
-                                    <a href="../dish/dish_dashboard.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Platos</a>
-                                    <a href="../dish/dish_add.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-success">Añadir Plato</a>
-                                    <a href="vendor_delete.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-danger">Eliminar tienda</a>
+                                    <a href="../dish/dish_dashboard_user.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Platos</a>
                                 </div>
                             </div>
                         </div>
@@ -150,19 +149,6 @@
                                     'line-width': 3
                                 }
                             });
-                            /*
-                            map.on('click', function(e) {
-                                var coordinates = e.lngLat;
-                                var lat = coordinates.lat;
-                                var lng = e.lngLat.lng;
-                                document.getElementById("latitud").value = lat;
-                                document.getElementById("longitud").value = lng;
-                                new mapboxgl.Popup()
-                                    .setLngLat(coordinates)
-                                    .setHTML('you clicked here: <br/>' + coordinates)
-                                    .addTo(map);
-                            });
-                            */
                         });
                             <?php foreach ($ubicaciones as $ubicacion) { ?>
                                 var marker1 = new mapboxgl.Marker()
@@ -178,10 +164,10 @@
     <!-- Uso del aside -->
 
     <!-- Uso del footer -->
-    <footer class="pie-de-pagina text-center text-md-right bg-primary fixed-bottom text-white">
-        <div class="container">
-            <p class="m-0 py-3">UTARICO © </p>
-        </div>
+    <footer>
+        <nav class="navbar navbar-dark bg-primary justify-content-end">
+            <a class="navbar-brand" href="user_main_dashboard.php"> Página Principal</a>
+        </nav>
     </footer>
 
 </body>

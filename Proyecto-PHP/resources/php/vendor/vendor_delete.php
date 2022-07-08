@@ -6,12 +6,12 @@ include("../conexion.php");
 $id = $_GET['id'];
 
 //Se borra la fila con el id asociado
-$borrar_fila = "DELETE FROM proyecto.usuarios WHERE id= $id";
+$borrar_fila = "DELETE FROM proyecto.ubicaciones WHERE id= $id";
 
 //Verificamos que se borró la fila
 if ($conn->query($borrar_fila) === TRUE) {
     //Redireccionamos a la pagina donde se muestra todas las filas
-    header("Location: ../admin/dashboard.php");
+    header("Location: ../admin/admin_vendor_dashboard.php");
     
 } else {
     echo "Error deleting record: " . $conn->error;

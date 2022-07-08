@@ -17,8 +17,8 @@
 
     //Verificamos que se haya realizado la inserción
     if ($conn->query($insertar) === TRUE) {
-    //Redireccionamos a login.php
-        header("Location: ../../html/user/login.html");
+    //Redireccionamos a dish dashboard.php
+        header("Location: ../admin/admin_vendor_dashboard.php");
     } else {
         echo "Error: " . $insertar . "<br>" . $conn->error;
     }

@@ -19,7 +19,7 @@
 <body>
     <header>
         <nav class="navbar navbar-dark bg-primary justify-content-start">
-            <a class="navbar-brand" href="main.html"> Página Principal</a>
+            <a class="navbar-brand" href="../admin/admin_main_dashboard.php"> Página Principal</a>
         </nav>
     </header>
     <?php
@@ -33,10 +33,10 @@
     <div class="principal ">
         
         <div class="signup-form">
-            <form action="dish_add_trigger.php" method="post" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
+            <form action="dish_register_trigger.php" method="post" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
                 <h2>Añadir Plato para vendedor <?php echo $vend_array['nombreTienda']?></h2>
                 <p class="hint-text">Información del Plato</p>
-                <form action="register.php" method="POST" enctype="multipart/form-data">
+                <form action="dish_register_trigger.php" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="nombreTienda">Nombre Plato</label>
@@ -70,7 +70,7 @@
     </div>
     <footer>
         <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="main.html"> Página Principal</a>
+            <a class="navbar-brand" href="../admin/admin_main_dashboard.php"> Página Principal</a>
         </nav>
     </footer>
 </body>

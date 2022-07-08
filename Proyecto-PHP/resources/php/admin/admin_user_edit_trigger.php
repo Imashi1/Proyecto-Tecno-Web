@@ -6,7 +6,7 @@
     //Verificamos que se haya realizado la inserción
     if ($conn->query($actualizar) === TRUE) {
     //Redireccionamos a login.php
-        header("Location: ../admin/dashboard.php");
+        header("Location: ../admin/admin_main_dashboard.php");
     } else {
         echo "Error: " . $actualizar . "<br>" . $conn->error;
     }

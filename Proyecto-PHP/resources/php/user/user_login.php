@@ -4,7 +4,7 @@
     {
         extract($_POST);
         include("../conexion.php");
-        $buscar=mysqli_query($conn,"SELECT * FROM administradores where correo='$correo' and contrasena='$contra'");
+        $buscar=mysqli_query($conn,"SELECT * FROM usuarios where correo='$correo' and contrasena='$contra'");
         $row  = mysqli_fetch_array($buscar);
         if(is_array($row))
         {
@@ -12,7 +12,7 @@
             $_SESSION["correo"]=$row['correo'];
             $_SESSION["nombre"]=$row['nombre'];
             $_SESSION["apellido"]=$row['apellido']; 
-            header("Location: dashboard.php"); 
+            header("Location: user_main_dashboard.php"); 
         }
         else
         {

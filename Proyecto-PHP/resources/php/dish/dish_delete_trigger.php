@@ -24,7 +24,7 @@ $borrar_fila = "DELETE FROM proyecto.platos WHERE idPlato= $id";
 //Verificamos que se borró la fila
 if ($conn->query($borrar_fila) === TRUE) {
     //Redireccionamos a la pagina donde se muestra todas las filas
-    header("Location: dish_dashboard.php");
+    header("Location: ../admin/admin_vendor_dashboard.php");
     
 } else {
     echo "Error deleting record: " . $conn->error;

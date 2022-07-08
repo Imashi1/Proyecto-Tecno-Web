@@ -52,7 +52,7 @@
                 <?php
                     session_start();
                     include("../conexion.php");
-                    $mostrar_todo = "SELECT nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
+                    $mostrar_todo = "SELECT id,nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
                     $ubicaciones = $conn->query($mostrar_todo); 
                 ?>
                 <?php foreach ($ubicaciones as $ubicacion) { ?>
@@ -65,7 +65,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $ubicacion['nombreTienda'];?></h5>
                                     <p class="card-text"><?php echo $ubicacion['descripcionTienda']; ?>, <?php echo $ubicacion['latitud']; ?>, <?php echo $ubicacion['longitud']; ?></p>
-                                    <a href="local.html" class="btn btn-primary">Ver Mas</a>
+                                    <a href="../dish/dish_dashboard_user.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Mas</a>
+                                   
+                                    
                                 </div>
                             </div>
                         </div>

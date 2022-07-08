@@ -29,7 +29,7 @@
     <header>
         <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
             <div class="container">      
-                <a href="main.html" class="navbar-brand">
+                <a href="../admin/admin_main_dashboard.php" class="navbar-brand">
                   <strong>UTARICO</strong>
                 </a>
                   <button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -41,9 +41,9 @@
                 <div class="collapse navbar-collapse" id="menu-principal">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
-                    <li class="nav-item"><a href="../vendor/dashboard_vendor_admin.php" class="nav-link">Ver Tiendas</a></li>
-                    <li class="nav-item"><a href="../vendor/add_vendor_form.php?id='<?php echo $ID; ?>'" class="nav-link">Agregar Tienda</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link">Cerrar Sesión</a></li>
+                    <li class="nav-item"><a href="../admin/admin_vendor_dashboard.php" class="nav-link">Ver Tiendas</a></li>
+                    <li class="nav-item"><a href="../vendor/vendor_register_form.php?id='<?php echo $ID; ?>'" class="nav-link">Agregar Tienda</a></li>
+                    <li class="nav-item"><a href="../admin/admin_logout.php" class="nav-link">Cerrar Sesión</a></li>
                   </ul>
                 </div>
             </div>
@@ -61,11 +61,11 @@
                         </div>
                         <div class="col-md-9">
                             <div class="card-body">
-                            <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
-                            <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
-                            <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
-                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                                <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
+                                <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
+                                <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
+                                <a href="dish_edit_form.php?id=<?php echo $plato['idPlato']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="dish_delete_trigger.php?id=<?php echo $plato['idPlato']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
     ?>
     <footer>
         <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="main.html"> Página Principal</a>
+            <a class="navbar-brand" href="../admin/admin_main_dashboard.php"> Página Principal</a>
         </nav>
     </footer>
 
