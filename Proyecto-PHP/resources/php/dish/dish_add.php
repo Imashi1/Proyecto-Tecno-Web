@@ -30,7 +30,8 @@
         foreach ($vendedor as $vend_array) {
         }
     ?>
-        <div class="principal">
+    <div class="principal ">
+        
         <div class="signup-form">
             <form action="dish_add_trigger.php" method="post" enctype="multipart/form-data" class="bg-light my-3 p-3 border rounded">
                 <h2>Añadir Plato para vendedor <?php echo $vend_array['nombreTienda']?></h2>

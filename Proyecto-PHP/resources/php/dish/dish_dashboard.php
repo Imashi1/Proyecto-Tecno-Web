@@ -50,27 +50,27 @@
         </nav>
     </header>
     
-    <div class="container">
+    <div class="principal">
         <div class="row">
             <div class="col-12 col-md-6">
+            <?php foreach ($platos as $plato) { ?>
                 <div class="card mb-3">
                     <div class="row no-gutters">
-                        <?php foreach ($platos as $plato) { ?>
-                            <div class="col-md-3">
-                            <img src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                        <div class="col-md-3">
+                            <img class="card-img-top" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                            <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
+                            <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
+                            <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
+                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
                             </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
-                                <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
-                                <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
-                                <a href="dish_add.php" class="btn btn-success">Agregar</a>
-                                <a href="dish_delete_trigger.php?id='<?php echo $plato['idPlato']; ?>'" class="btn btn-danger">Eliminar</a>
-                                </div>
-                            </div>
-                        <?php } ?>
+                        </div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div> 
     </div>

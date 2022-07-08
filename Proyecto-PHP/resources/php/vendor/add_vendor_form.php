@@ -22,7 +22,7 @@
             height: 80%;
         }
                 /* Clase principal (hijo de contenedor) */
-                .principal{
+        .principal{
             /* margin-top: 50px; */
             background-color: white;
             padding: 20px;
