@@ -11,6 +11,16 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="login.css">
+    <style>
+        /* Clase principal (hijo de contenedor) */
+        .principal{
+           /* margin-top: 50px; */
+           background-color: white;
+           padding: 20px;
+           /* Siempre tomara el mismo ancho que el contenedor */
+           width: 100%;
+       }
+   </style>
 </head>
 
 <body>
@@ -34,19 +44,25 @@
     </nav>
     <!-- Seccion principal donde se encuentran los articulos -->
     <section class="principal">
-        <form action="../../php/user/login.php" class="form-signin text-center" method="POST">
-            <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
-            <label for="ingresoEmail" class="sr-only">Email</label>
-            <input type="email" name="correo" id="ingresoEmail" class="form-control" placeholder="Email" required autofocus>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <form action="../../php/user/login.php" class="form-signin text-center  bg-light my-3 p-3 border rounded" method="POST">
+                        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
+                        <label for="ingresoEmail" class="sr-only">Email</label>
+                        <input type="email" name="correo" id="ingresoEmail" class="form-control" placeholder="Email" required autofocus>
 
-            <label for="ingresoPassword" class="sr-only">Contraseña</label>
-            <input type="password" name="contra" id="ingresoPassword" class="form-control" placeholder="Contraseña" required>
-            <div class="checkbox mb-3">
+                        <label for="ingresoPassword" class="sr-only">Contraseña</label>
+                        <input type="password" name="contra" id="ingresoPassword" class="form-control" placeholder="Contraseña" required>
+                        <div class="checkbox mb-3">
 
+                        </div>
+                        <button type="submit" name="guardar" class="btn btn-lg btn-primary btn-block text-white">Iniciar Sesión</button>
+                        <p class="mt-5 mb-3 text-muted">&copy; UTARICO ©</p>
+                    </form>
+                </div>
             </div>
-            <button type="submit" name="guardar" class="btn btn-lg btn-primary btn-block text-white">Iniciar Sesión</button>
-            <p class="mt-5 mb-3 text-muted">&copy; UTARICO ©</p>
-        </form>
+        </div>
     </section>
     <!-- Uso del aside -->
 </body>
