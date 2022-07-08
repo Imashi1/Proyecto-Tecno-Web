@@ -38,7 +38,7 @@
         <!-- Procedemos a mostrar los datos-->
         <!-- junto con los datos actualmente en la base de datos-->
         <!-- action representa hacia donde van los datos del form -->
-        <form action="../user/edit_user_trigger.php" method="POST" enctype="multipart/form-data">
+        <form action="../user/edit_user_trigger.php" class="bg-light my-3 p-3 border rounded" method="POST" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
