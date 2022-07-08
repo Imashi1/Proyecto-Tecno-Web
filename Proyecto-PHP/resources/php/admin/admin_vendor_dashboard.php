@@ -21,6 +21,14 @@
             width: 100%;
             height: 95%;
         }
+        .principal {
+            /* margin-top: 50px; */
+            background-color: white;
+            padding: 20px;
+            /* Siempre tomara el mismo ancho que el contenedor */
+            width: 100%;
+        }
+
     </style>
 </head>
 

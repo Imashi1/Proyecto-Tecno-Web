@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="style.css">
     <!-- Fin Boostrap -->
     <title>UH TA' RICO</title>
+    <style>
+        .principal {
+            /* margin-top: 50px; */
+            background-color: white;
+            padding: 20px;
+            /* Siempre tomara el mismo ancho que el contenedor */
+            width: 100%;
+        }
+
+    </style>
     <?php
     //Verificamos que estamos conectados a la base de datos
 		session_start();
