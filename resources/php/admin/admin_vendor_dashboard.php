@@ -3,40 +3,24 @@
 
 <head>
     <meta charset="utf-8">
-    <title>dashboard</title>
+    <title>UTARICO Tiendas</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <!-- Conexion con Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            height: 95%;
-        }
-        .principal {
-            /* margin-top: 50px; */
-            background-color: white;
-            padding: 20px;
-            /* Siempre tomara el mismo ancho que el contenedor */
-            width: 100%;
-        }
-
-    </style>
+    <!-- Conexion con la hoja de estilo estilo-->
+    <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
 </head>
 
 <body>
     <?php
-        //Verficación de conexión a la base de datos
-        session_start();
-        include("../conexion.php");
+        //Verificamos que estamos conectados a la base de datos
+		session_start();
+		include("../conexion.php");
+		$ID= $_SESSION["id"];
+		$sql=mysqli_query($conn,"SELECT * FROM proyecto.administradores where id='$ID' ");
+		$row  = mysqli_fetch_array($sql);
 
         //Consulta para obtener todas las tiendas
         $mostrar_todo = "SELECT id, nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
@@ -44,47 +28,72 @@
     ?>
     <!-- SECCION NAVEGACIÓN-->
     <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
-        <div class="container">
+        <div class="container">      
             <a href="admin_main_dashboard.php" class="navbar-brand">
                 <strong>UTARICO</strong>
             </a>
-
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Desplegar menú de navegación">
-            <span class="navbar-toggler-icon"></span>
+                <button type="button" class="navbar-toggler" data-toggle="collapse"
+                data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false"
+                aria-label="Desplegar menú de navegación">
+                <span class="navbar-toggler-icon"></span>
             </button>
-
+        
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
-                    <li class="nav-item"><a href="admin_logout.php" class="nav-link">Cerrar Sesión</a></li>
+                <li class="nav-item"><a href="admin_vendor_dashboard.php" class="nav-link">Ver Tiendas</a></li>
+                <li class="nav-item"><a href="../vendor/vendor_register_form.php?id='<?php echo $ID; ?>'" class="nav-link">Agregar Tienda</a></li>
+                <li class="nav-item"><a href="admin_logout.php" class="nav-link">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- Sección dividida en dos partes -->
-    <section class="principal">
-        <div class="row">
+    <section class="container mt-3">
+        <div class="row h-100">
             <!--Primero parte izquierda, donde se muestran las tiendas-->
             <div class="col-12 col-md-6">
-                <!--Muestreo de las ubicaciones-->
                 <?php foreach ($ubicaciones as $ubicacion) { ?>
                     <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-3">
-                                <img class="card-img-top" src="../../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Tienda">
+                        <div class="d-flex bd-highlight">
+                            <div class="d-flex align-items-center bd-highlight">
+                                <img class="img-card rounded" src="../../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Tienda">
                             </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $ubicacion['nombreTienda'];?></h5>
-                                    <p class="card-text"><?php echo $ubicacion['descripcionTienda']; ?>, <?php echo $ubicacion['latitud']; ?>, <?php echo $ubicacion['longitud']; ?></p>
-                                    <a href="../dish/dish_dashboard_admin.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Mas</a>
-                                    <a href="../dish/dish_register_form.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-success">Añadir Plato</a>
-                                    <a href="../vendor/vendor_delete.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-danger">Eliminar tienda</a>
-                                </div>
+                            <div class="p-3 w-100 bd-highlight">
+                                <div class="d-flex flex-column bd-highlight ">
+                                    <div class="d-flex bd-highlight title-card"><?php echo $ubicacion['nombreTienda'];?></div>
+                                    <div class="d-flex bd-highlight desc-card mb-3"><?php echo $ubicacion['descripcionTienda']; ?></div>
+                                    <div class="d-flex bd-highlight ml-auto ">
+                                        <a href="../dish/dish_dashboard_admin.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-sm btn-primary ml-1">Ver Mas</a>
+                                        <a href="../dish/dish_register_form.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-sm btn-success ml-1">Añadir Plato</a>
+                                        <a data-toggle="modal" data-target="#confirm-delete" class="btn btn-sm btn-danger ml-1">Eliminar tienda</a>
+                                    </div>
+                                </div>                                      
                             </div>
                         </div>
                     </div>
                 <?php } ?>
+                <!-- Modal para eliminar-->
+                <div class="modal fade" id="confirm-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">		
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Tienda</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                            <div class="modal-body">
+                                ¿Esta seguro de eliminar este Tienda?
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
+                                <a name='id' type="submit" method="POST" class="btn btn-danger" href="../vendor/vendor_delete.php?id='<?php echo $ubicacion['id']; ?>'">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-6">
                 <!--Segunda parte derecha, mapa con las marcadores de las tiendas-->
@@ -165,19 +174,32 @@
                                 .setLngLat([<?php echo $ubicacion['longitud'];?>, <?php echo $ubicacion['latitud'];?>])
                                 .addTo(map);
                         <?php } ?>
-                    </script>
-                    
+                    </script>        
                 </div>
             </div>
         </div>
     </section>
     <?php $conn->close(); ?>
     <!-- Uso del footer -->
-    <footer>
-        <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="admin_main_dashboard.php"> Página Principal</a>
-        </nav>
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
     </footer>
+
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
 </body>
 

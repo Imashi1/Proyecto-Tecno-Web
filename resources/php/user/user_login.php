@@ -20,7 +20,7 @@
         //Si no los encuentra
         else
         {
-            echo "Invalid Email ID/Password";
+            header("Location:  ../../html/user/user_error_login.html"); 
         }
     }
 ?>

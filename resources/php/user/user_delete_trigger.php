@@ -1,3 +1,4 @@
+<!-- PHP para eliminar un usuario -->
 <?php
 //Verificamos que estamos conectados a la base de datos
 include("../conexion.php");

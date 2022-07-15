@@ -20,7 +20,7 @@
         //Si no encuentra los datos
         else
         {
-            header("Location: ../../html/admin_error_login.php");
+            header("Location: ../../html/admin/admin_error_login.html");
         }
         $conn->close();
     }

@@ -49,7 +49,7 @@
     </header>
     <!-- Divimos la sección en dos partes -->
     <section class="container mt-3">
-        <div class="row h-100">
+        <div class="row">
             <!--La primera que contiene el formulario para agregar una nueva tienda-->
             <div class="col-12 col-md-6">
                 <!--Action que dirige los datos insertados al registro-->
@@ -91,6 +91,8 @@
             </div>
             <!--Y la segunda parte, será el mapa donde podremos darle click y obtener las coordenadas para la ubicación de la tienda-->
             <div class="col-12 col-md-6">
+                <br><br><br><br><br>
+                <br>
                 <div id="map">
                     <script>
                         mapboxgl.accessToken = 'pk.eyJ1IjoiaW1hc2hpMSIsImEiOiJjbDMwemhrcmkwNHVuM2Nvd2loM28xMm84In0.i0qnFzBwR_QT8BCpVDyDeg';
@@ -185,12 +187,24 @@
     <!-- Uso del aside -->
 
     <!-- Uso del footer -->
-    <footer>
-        <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="../admin/admin_main_dashboard.php"> Página Principal</a>
-        </nav>
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
     </footer>
-
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     
 </body>
 

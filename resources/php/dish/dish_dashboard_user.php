@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
-    <!-- Fin Boostrap -->
+    <!-- Conexion con Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- Conexion con la hoja de estilo estilo-->
+    <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
     <title>UH TA' RICO</title>
     <style>
         .principal {
@@ -21,21 +21,15 @@
 
     </style>
     <?php
-        //Verificamos que estamos conectados a la base de datos
+    //Verificamos que estamos conectados a la base de datos
 		session_start();
 		include("../conexion.php");
-
-        //Obtenemos la id de la sesión del usuario
-		$IDUser= $_SESSION["id"];
-
-        //Obtenemos la id de la ubicación a través de la url
+		$ID= $_SESSION["id"];
         $idUbicacion = $_GET["id"];
-        
-        //Realizamos consulta para obtener la id del usuario
-		$sql=mysqli_query($conn,"SELECT id FROM proyecto.usuarios where id='$IDUser' ");
+		$sql=mysqli_query($conn,"SELECT * FROM proyecto.usuarios where id='$ID' ");
 		$row  = mysqli_fetch_array($sql);
 
-        //Realizamos la consulta para obtener todos los platos de esa tienda
+        //Realizamos la consulta para obtener todas las filas de la tabla productos
         $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos WHERE idUbicaciones = $idUbicacion ";
         $platos = $conn->query($mostrar_todo);
     ?>
@@ -56,7 +50,6 @@
           
                 <div class="collapse navbar-collapse" id="menu-principal">
                   <ul class="navbar-nav ml-auto">
-                    
                     <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
                     <li class="nav-item"><a href="../user/user_main_dashboard.php" class="nav-link">Ver Tiendas</a></li>
                     <li class="nav-item"><a href="../user/user_logout.php" class="nav-link">Cerrar Sesión</a></li>
@@ -69,24 +62,22 @@
     <div class="principal">
         <div class="row">
             <div class="col-12 col-md-6">
-                <!--Procedemos a mostrar los platos-->
-                <?php foreach ($platos as $plato) { ?>
-                    <div class="card mb-3">
-                        <div class="row no-gutters">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <?php foreach ($platos as $plato) { ?>
                             <div class="col-md-3">
-                                <img class="card-img-top" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                            <img class="card-img-top" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
-                                    <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
-                                    <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
-                                    <a href="../stats/stats_dish_register.php?id='<?php echo $plato['idPlato']; ?>'&user='<?php echo $row['id']; ?>'&ubicacion='<?php echo $idUbicacion; ?>'" class="btn btn-success">Agregar Plato</a>
+                                <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
+                                <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
+                                <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
-                <?php } ?>
+                </div>
             </div>
         </div> 
     </div>
@@ -95,16 +86,25 @@
     $conn->close(); 
     
     ?>
-    <footer>
-        <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="../user/user_main_dashboard.php"> Página Principal</a>
-        </nav>
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
     </footer>
 
-    <!-- Bootstrap -->
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <!-- Fin Boostrap -->
 
 </body>
 </html>

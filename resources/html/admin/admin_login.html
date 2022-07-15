@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>UH, TA' RICO</title>
-    <!-- Usando Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>UTARICO Bienvenido</title>
     <!-- Conexion con la hoja de estilo STYLE -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="login.css">
+    <!-- Conexion con Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- Conexion con la hoja de estilo estilo-->
+    <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
 </head>
 
 <body>
@@ -35,28 +36,52 @@
         </div>
     </nav>
     <!-- Seccion principal donde se encuentran los articulos -->
-    <section class="principal">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-6">
-                    <!--Redirección a autentificación del administrador-->
-                    <form action="../../php/admin/admin_login.php" class="form-signin text-center  bg-light my-3 p-3 border rounded" method="POST">
-                        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
+    <section class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <!--Redirección a autentificación del administrador-->
+                <form action="../../php/admin/admin_login.php" class="form-signin text-center bg-light my-3 p-3 border rounded" method="POST">
+                    <h2>Iniciar Sesion</h2>
+                    <p class="hint-text">Ingresa con tu correo</p>
+                    <div class="form-group">
                         <label for="ingresoEmail" class="sr-only">Email</label>
                         <input type="email" name="correo" id="ingresoEmail" class="form-control" placeholder="Email" required autofocus>
-
+                    </div>
+                    <div class="form-group">
                         <label for="ingresoPassword" class="sr-only">Contraseña</label>
                         <input type="password" name="contra" id="ingresoPassword" class="form-control" placeholder="Contraseña" required>
                         <div class="checkbox mb-3">
-
                         </div>
-                        <button type="submit" name="guardar" class="btn btn-lg btn-primary btn-block text-white">Iniciar Sesión</button>
-                        <p class="mt-5 mb-3 text-muted">&copy; UTARICO ©</p>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="guardar" class="btn btn-primary btn-block text-white">Ingresar</button>
+                    </div>
+                    <p class="mt-5 mb-3 text-muted">&copy; UTARICO ©</p>
+                </form>
             </div>
         </div>
     </section>
+    <!-- Uso del footer -->
+    <!-- Uso del footer -->
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
+    </footer>
+
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 
 </html>

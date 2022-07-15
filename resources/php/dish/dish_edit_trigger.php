@@ -1,11 +1,6 @@
 <?php
-    //Verificamos la conexión
-    include("../conexion.php");
-
-    //Obtención de datos del plato por medio del form.
     extract($_POST);
-    
-    //Procedimiento de subir una imagen
+    include("../conexion.php");
     $imagen = (isset($_FILES['imagenPlato']['name'])) ? $_FILES['imagenPlato']['name'] : "";
     $fecha = new DateTime();
     $nombreArchivo = ($imagen != "") ? $fecha->getTimestamp() . "_" . $_FILES["imagenPlato"]["name"] : "notfoung.jpg";
@@ -39,7 +34,7 @@
 
     //Verificamos que se haya realizado la inserción
     if ($conn->query($actualizar) === TRUE) {
-    //Redireccionamos a al dashboard de las tiendas del admin
+    //Redireccionamos a login.php
         header("Location: ../admin/admin_vendor_dashboard.php");
     } 
     else {

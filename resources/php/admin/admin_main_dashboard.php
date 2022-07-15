@@ -54,7 +54,8 @@
             <div class="col-12">
                 <div class="my-3 p-3">
                     <h2 class="text-center">Bienvenido <?php echo $_SESSION["nombre"] ?> <?php echo $_SESSION["apellido"] ?></h2>
-                    <table class="table table-bordered my-3">
+                    <div class="table table-responsive">
+                        <table class="table table-bordered my-3">
                         <thead>
                             <tr>
                                 <th scope="col">Nombre</th>
@@ -80,7 +81,8 @@
                             </tr>
                         <?php } ?>
                         </tbody>
-                    </table> 
+                    </table>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -112,13 +114,21 @@
     //Cerramos la conexión
         $conn->close();     
     ?>
-    <!-- Uso del footer -->
-    <footer>
-        <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="admin_main_dashboard.php"> Página Principal</a>
-        </nav>
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
     </footer>
-
     <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

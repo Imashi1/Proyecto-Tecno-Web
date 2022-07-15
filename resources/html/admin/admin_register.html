@@ -7,22 +7,38 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <title>Registro</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assests/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+    <!-- Conexion con Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- Conexion con la hoja de estilo estilo-->
+    <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
 </head>
 
 <body>
-    <!-- Html que se encarga de registrar un administrador-->
-    <div class="principal">
+    <!-- SECCION NAVEGACIÓN-->
+    <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
         <div class="container">
-            <div class="signup-form">
+            <a href="admin_login.html" class="navbar-brand">
+                <strong>UTARICO</strong>
+            </a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Desplegar menú de navegación">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+            <div class="collapse navbar-collapse" id="menu-principal">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="admin_login.html" class="nav-link">Iniciar Sesión</a></li>
+                    <li class="nav-item"><a href="../user/user_login.html" class="nav-link">Iniciar Sesión Usuario</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Html que se encarga de registrar un administrador-->
+    <section class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
                 <!-- Redirección a inserción de datos a la base de datos-->
-                <form action="../../php/admin/admin_register.php" class="form-signin text-center  bg-light my-3 p-3 border rounded" method="post" enctype="multipart/form-data">
+                <form action="../../php/admin/admin_register.php" class="form-signin text-center bg-light my-3 p-3 border rounded" method="post" enctype="multipart/form-data">
                     <h2>Registro</h2>
                     <p class="hint-text">Crea tu cuenta</p>
                     <div class="form-group">
@@ -38,13 +54,33 @@
                         <input type="password" class="form-control" name="contra" placeholder="Contraseña" required="required">
                     </div>
                     <div class="form-group">
-                        <button type="submit" name="guardar" class="btn btn-success btn-lg btn-block">Registrarse</button>
+                        <button type="submit" name="guardar" class="btn btn-success btn-block">Registrarse</button>
                     </div>
-                    <div class="text-center">Ya tienes una cuenta? <a href="admin_login.html">Ingresar</a></div>
+                    <div class="text-center">Ya tienes una cuenta? <a href="admin_login.html">Ingresa</a></div>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- Uso del footer -->
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
+    </footer>
+
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 
 </html>
