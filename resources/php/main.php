@@ -7,28 +7,10 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <!-- Conexion con Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            height: 95%;
-        }
-        .principal {
-            /* margin-top: 50px; */
-            background-color: white;
-            padding: 20px;
-            /* Siempre tomara el mismo ancho que el contenedor */
-            width: 100%;
-        }
-    </style>
+    <!-- Conexion con la hoja de estilo estilo-->
+    <link type="text/css" rel="stylesheet" href="../css/estilo.css">
 </head>
 
 <body>
@@ -58,22 +40,24 @@
         </div>
     </nav>
     <!-- Sección dividida en dos partes -->
-    <section class="principal">
+    <section class="container mt-3">
         <div class="row">
             <!--Primero parte izquierda, donde se muestran las tiendas-->
             <div class="col-12 col-md-6">
                 <!--Muestreo de las ubicaciones-->
                 <?php foreach ($ubicaciones as $ubicacion) { ?>
                     <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-3">
-                                <img class="card-img-top" src="../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Tienda">
+                        <div class="d-flex bd-highlight">
+                            <div class="d-flex align-items-center bd-highlight">
+                                <img class="img-card rounded" src="../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Tienda">
                             </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $ubicacion['nombreTienda'];?></h5>
-                                    <p class="card-text"><?php echo $ubicacion['descripcionTienda']; ?>, <?php echo $ubicacion['latitud']; ?>, <?php echo $ubicacion['longitud']; ?></p>
-                                    <a href="dish/dish_dashboard_main.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Platos</a>
+                            <div class="p-3 w-100 bd-highlight">
+                                <div class="d-flex flex-column bd-highlight ">
+                                    <dic class="d-flex bd-highlight title-card"><?php echo $ubicacion['nombreTienda'];?></dic>
+                                    <div class="d-flex bd-highlight desc-card mb-3"><?php echo $ubicacion['descripcionTienda'];  ?></div>
+                                    <div class="d-flex bd-highlight ml-auto ">
+                                        <a href="dish/dish_dashboard_main.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-sm btn-primary stretched-link">Ver Platos</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -166,11 +150,26 @@
     </section>
     <?php $conn->close(); ?>
     <!-- Uso del footer -->
-    <footer>
-        <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="main.php"> Página Principal</a>
-        </nav>
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
+                    Resgistro
+                </button>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
     </footer>
+
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
 
 </body>
 
