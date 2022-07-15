@@ -1,4 +1,4 @@
-# Bienvenidos a UH´ TA RICO
+# Bienvenidos a UTARICO
 
 ### Resumen
 Este proyecto consensuado entre los integrantes del equipo y el profesor del ramo Tecnología Web, Leonel Alarcón Bravo, busca poder dar a conocer aquellos estudiantes u tiendas que poseen productos a la venta que permanecen ocultos o que quieren dar a conocer un poco su imagen dentro de la Universidad de Tarapacá.
