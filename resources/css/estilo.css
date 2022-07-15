@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+section{
+    height: 100%;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 95%;
+}
+.alto-mapa{
+    height: 10rem;
+}
+
+/* ESTILOS PARA LOS CARD */
+.img-card{
+    width: 135px;
+    height: 135px;
+}
+.title-card{
+    font-size: larger;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.desc-card{
+    font-size: smaller;
+    color: grey;
+}
+.prec-card{
+    font-size: larger;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* El ancho de las imagenes tomara el 100 porciento del ancho del elemento donde este */
+img{
+    width: 100%;
+}
+/* El ancho de los videos tomara el 100 porciento del ancho del elemento donde este */
+video{
+    width: 100%;
+}
+/* El ancho de los audios toamra el 100 porciento del ancho del elemento donde este */
+audio{
+    width: 100%;
+}
+
+/* Cambios si la altura es menor o igual a 1024px */
+@media (max-width: 1024px) {
+
+}
+/* Cambios si la altura es menor o igual a 768px */
+@media (max-width: 768px) {
+
+}
+/* Cambios si la altura es menor o igual a 480px */
+@media (max-width: 480px) {
+
+}
