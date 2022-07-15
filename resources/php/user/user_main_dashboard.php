@@ -63,7 +63,7 @@
                                     <dic class="d-flex bd-highlight title-card"><?php echo $ubicacion['nombreTienda'];?></dic>
                                     <div class="d-flex bd-highlight desc-card mb-3"><?php echo $ubicacion['descripcionTienda'];  ?></div>
                                     <div class="d-flex bd-highlight ml-auto ">
-                                        <a href="../stats/stats_location_register.php?id='<?php echo $ubicacion['id']; ?>'&user= <?php echo $ID ?> " class="btn btn-primary">Ver Platos</a>
+                                        <a href="../stats/stats_location_register.php?id='<?php echo $ubicacion['id']; ?>'&user= <?php echo $ID ?> " class="btn btn-primary btn-sm">Ver Platos</a>
                                     </div>
                                 </div>
                             </div>
@@ -157,14 +157,14 @@
     </section>
     <?php $conn->close(); ?>
     <!-- Uso del footer -->
-    <footer class="text-center text-white bg-primary">
+    <footer class="text-center text-white bg-primary mt-auto">
         <div class="container p-4 pb-0">
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3">Registrate!</span>
-                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
-                    Resgistro
-                </button>
+                <a href="../html/user/user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                    Registro
+                </a>
                 </p>
             </section>
         </div>
