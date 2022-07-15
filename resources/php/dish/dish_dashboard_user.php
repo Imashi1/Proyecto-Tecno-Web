@@ -45,7 +45,6 @@
           
                 <div class="collapse navbar-collapse" id="menu-principal">
                   <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
                     <li class="nav-item"><a href="../user/user_main_dashboard.php" class="nav-link">Ver Tiendas</a></li>
                     <li class="nav-item"><a href="../user/user_logout.php" class="nav-link">Cerrar Sesión</a></li>
                   </ul>
@@ -91,7 +90,7 @@
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3">Registrate!</span>
-                <a href="../html/user/user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                <a href="../../html/user/user_register.html" class="btn btn-outline-light rounded-pill ml-2">
                     Registro
                 </a>
                 </p>

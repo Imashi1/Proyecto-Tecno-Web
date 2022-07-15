@@ -186,9 +186,9 @@
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3">Registrate!</span>
-                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
-                    Resgistro
-                </button>
+                <a href="../../html/user/user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                    Registro
+                </a>
                 </p>
             </section>
         </div>

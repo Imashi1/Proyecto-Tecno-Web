@@ -5,21 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
-    <!-- Fin Boostrap -->
-    <title>UH TA' RICO</title>
-    <style>
-        .principal {
-            /* margin-top: 50px; */
-            background-color: white;
-            padding: 20px;
-            /* Siempre tomara el mismo ancho que el contenedor */
-            width: 100%;
-        }
+    <!-- Conexion con Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- Conexion con la hoja de estilo estilo-->
+    <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
+    <title>UTARICO Productos Tienda Admi</title>
 
-    </style>
     <?php
         //Verificamos que estamos conectados a la base de datos
 		session_start();
@@ -30,6 +21,11 @@
 
         //Obtenemos la id de la ubicación a través de la url
         $idUbicacion = $_GET["id"];
+
+        //Realizamos la consulta para obtener la tienda
+        $nombre_tienda = "SELECT nombreTienda, descripcionTienda FROM ubicaciones WHERE id = $idUbicacion";
+        $tienda = $conn->query($nombre_tienda);
+        foreach ($tienda as $datos_tienda){}
 
         //Realizamos la consulta para obtener todos los platos de esa tienda
         $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos WHERE idUbicaciones = $idUbicacion ";
@@ -61,45 +57,83 @@
         </nav>
     </header>
     
-    <div class="principal">
+    <section class="container mt-3">
         <div class="row">
+        <div class="text-center col-12">
+                <h2><?php echo $datos_tienda['nombreTienda'];?></h2>
+                <p class="hint-text"><?php echo $datos_tienda['descripcionTienda'];?></p>
+            </div>
+            <!--Procedemos a mostrar los platos-->
+            <?php foreach ($platos as $plato) { ?>
             <div class="col-12 col-md-6">
-                <!--Procedemos a mostrar los platos-->
-                <?php foreach ($platos as $plato) { ?>
                     <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-3">
-                                <img class="card-img-top" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                        <div class="d-flex bd-highlight">
+                            <div class="p-3 w-100 bd-highlight">
+                                <div class="d-flex flex-column bd-highlight ">
+                                    <div class="d-flex bd-highlight title-card"><?php echo $plato['nombrePlato']; ?></div>
+                                    <div class="d-flex bd-highlight desc-card mb-3"><?php echo $plato['descripcionPlato']; ?></div>
+                                    <div class="d-flex bd-highlight prec-card">$<?php echo $plato['precioPlato']; ?></div>
+                                    <div class="d-flex bd-highlight ml-auto">
+                                        <a href="dish_edit_form.php?id=<?php echo $plato['idPlato']; ?>" class="btn btn-warning btn-sm ml-1">Editar</a>
+                                        <a data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger btn-sm ml-1">Eliminar</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
-                                    <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
-                                    <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
-                                    <a href="dish_edit_form.php?id=<?php echo $plato['idPlato']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                                    <a href="dish_delete_trigger.php?id=<?php echo $plato['idPlato']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                            <div class="d-flex align-items-center bd-highlight">
+                                <img class="img-card rounded" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal para eliminar-->
+                    <div class="modal fade" id="confirm-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">		
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Plato</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    ¿Esta seguro de eliminar este plato?
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
+                                    <a name='id' type="submit" method="POST" class="btn btn-danger" href="dish_delete_trigger.php?id=<?php echo $plato['idPlato']; ?>">Eliminar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
             </div>
+            <?php } ?>
         </div> 
-    </div>
+    </section>
     <?php 
     //Cerramos la conexión
     $conn->close(); 
     ?>
-    <footer>
-        <nav class="navbar navbar-dark bg-primary justify-content-end">
-            <a class="navbar-brand" href="../admin/admin_main_dashboard.php"> Página Principal</a>
-        </nav>
+    <!-- Uso del footer -->
+    <footer class="text-center text-white bg-primary">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Registrate!</span>
+                <a href="../../html/user/user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                    Registro
+                </a>
+                </p>
+            </section>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2022 Copyright: UTARICO
+        </div>
     </footer>
 
-    <!-- Bootstrap -->
+    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <!-- Fin Boostrap -->
 
 </body>
 </html>

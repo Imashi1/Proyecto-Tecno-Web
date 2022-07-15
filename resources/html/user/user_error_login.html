@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
         <div class="container">
-            <a href="admin_login.html" class="navbar-brand">
+            <a href="user_login.html" class="navbar-brand">
                 <strong>UTARICO</strong>
             </a>
 
@@ -34,10 +34,15 @@
 
     <section class="container mt-3">
         <!--Html que es invocado por un error en inicio de sesión-->
-        <div class="text-center">
-            <h1>Error: Inicio de Sesión fallido, intente de nuevo.</h1>
-            <br>
-            <a class="btn btn-primary" href="user_login.html">Iniciar Sesión</a>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="text-center bg-light my-3 p-3 border rounded">
+                    <h2>Error</h2>
+                    <p>Inicio de Sesión fallido, intente de nuevo.</p>
+                    <br>
+                    <a class="btn btn-primary" href="user_login.html">Iniciar Sesión</a>
+                </div>
+            </div>
         </div>
     </section>
     <!-- Uso del footer -->
@@ -46,9 +51,9 @@
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3">Registrate!</span>
-                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
-                    Resgistro
-                </button>
+                <a type="button" href="user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                    Registro
+                </a>
                 </p>
             </section>
         </div>
