@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.3.0-dev+20220624.1c2b611173
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-07-2022 a las 21:44:57
+-- Tiempo de generación: 15-07-2022 a las 15:48:31
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Versión de PHP: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id`, `nombre`, `apellido`, `correo`, `contrasena`, `fecha_creacion`) VALUES
-(1, 'admin', 'admin', 'admin@admin.cl', 'admin', '2022-06-29');
+(1, 'admin', 'admin', 'admin@admin.cl', 'admin', '2022-06-29'),
+(2, 'admin2', '2', 'admin2@admin.cl', 'admin2', '2022-07-15');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,16 @@ CREATE TABLE `platos` (
 --
 
 INSERT INTO `platos` (`idPlato`, `nombrePlato`, `descripcionPlato`, `imagenPlato`, `precioPlato`, `idUbicaciones`) VALUES
-(20, 'Plato 9', 'Buen plato para comer en familia', '1657779652_thumbs-up-192.jpg', 3000, 8);
+(25, 'Completo', 'Completo palta tomate vienesa', '1657885524_Completo.png', 1000, 13),
+(26, 'Churrasco', 'Churrazco tomate', '1657885599_Churrasco .png', 2000, 13),
+(27, 'Chorrillana', 'Papas vienesa', '1657885655_Chorrillana.png', 2500, 13),
+(28, 'Empanada', 'Empanada  pino carne cebolla', '1657885708_Empanadas.png', 1000, 13),
+(29, 'Chocolate Latte', 'Rica bedida caliente de chocolate con leche y café espumoso', '1657885764_Chocolate Latte.png', 2000, 14),
+(30, 'Muffins', 'Muffins esponjosos de vainilla', '1657885779_Muffins .png', 1000, 14),
+(31, 'Tarta de Durazno', 'Trozo individual de tarta ', '1657885827_Pie de durazno.png', 2500, 14),
+(32, 'Churrasco papa', 'Churrazco papa palta tomate', '1657885958_Churrasco con papas.png', 2300, 15),
+(33, 'Carne con Arroz', 'Carne asada con arroz blanco', '1657886021_Carne con arroz.png', 2500, 17),
+(34, 'Leche asada', 'Postre individual de leche asada', '1657886097_Leche asada .png', 1000, 17);
 
 -- --------------------------------------------------------
 
@@ -86,8 +96,10 @@ CREATE TABLE `ubicaciones` (
 --
 
 INSERT INTO `ubicaciones` (`id`, `nombreTienda`, `descripcionTienda`, `imagen`, `latitud`, `longitud`, `id_administradores`) VALUES
-(8, 'Tienda Prueba 8', 'Sin imagen', 'notfound.jpg', -18.489204822382675, -70.2957781529698, 1),
-(11, 'Tienda Prueba 11', 'no hay', '1657256923_unknown.png', -18.490740608780655, -70.29701673470065, 1);
+(13, 'Tienda 1', 'Hamburguesas, Completos y mas.', '1657852086_Foto Local Roly.png', -18.488305924205704, -70.2948761605402, 1),
+(14, 'Tienda 2', 'Cafe, tortas y mas', 'notfound.jpg', -18.491124856869092, -70.29594584755576, 1),
+(15, 'Tienda 3', 'Sandwiches, papas y mas.', '1657852667_Foto local.png', -18.489088725876883, -70.29607481691212, 1),
+(17, 'Tienda 4', 'Almuerzo y colaciones', 'notfound.jpg', -18.491445743195897, -70.29609909358852, 1);
 
 -- --------------------------------------------------------
 
@@ -100,13 +112,6 @@ CREATE TABLE `usuarioplato` (
   `idPlato` int(11) NOT NULL,
   `repPlato` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuarioplato`
---
-
-INSERT INTO `usuarioplato` (`idUser`, `idPlato`, `repPlato`) VALUES
-(2, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -128,9 +133,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `correo`, `contrasena`, `fecha_creacion`) VALUES
-(2, 'user', 'user', 'user@user.cl', 'user', '2022-06-29'),
-(5, 'usuario', 'usuario', 'usuario@usuario.cl', 'prueba', '2022-07-08'),
-(6, 'fabian', 'bugueno', 'fabian@bugueno.cl', 'fabian', '2022-07-14');
+(2, 'user', 'user2', 'user@user.cl', 'user', '2022-06-29'),
+(8, 'user3', 'user3', 'user3@user.cl', 'user', '2022-07-15');
 
 -- --------------------------------------------------------
 
@@ -149,7 +153,27 @@ CREATE TABLE `usuarioubicacion` (
 --
 
 INSERT INTO `usuarioubicacion` (`idUser`, `idUbicacion`, `repUbicacion`) VALUES
-(2, 8, 1);
+(2, 13, 1),
+(2, 13, 2),
+(2, 13, 3),
+(2, 13, 4),
+(2, 13, 5),
+(2, 13, 6),
+(2, 13, 7),
+(2, 13, 8),
+(2, 13, 9),
+(2, 13, 10),
+(2, 14, 1),
+(2, 14, 2),
+(2, 14, 3),
+(2, 14, 4),
+(2, 14, 5),
+(2, 14, 6),
+(2, 14, 7),
+(2, 15, 1),
+(2, 15, 2),
+(2, 15, 3),
+(2, 17, 1);
 
 --
 -- Índices para tablas volcadas
@@ -205,25 +229,25 @@ ALTER TABLE `usuarioubicacion`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `platos`
 --
 ALTER TABLE `platos`
-  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idPlato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicaciones`
 --
 ALTER TABLE `ubicaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -259,3 +283,6 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
