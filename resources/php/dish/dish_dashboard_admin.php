@@ -52,7 +52,6 @@
           
                 <div class="collapse navbar-collapse" id="menu-principal">
                   <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
                     <li class="nav-item"><a href="../admin/admin_vendor_dashboard.php" class="nav-link">Ver Tiendas</a></li>
                     <li class="nav-item"><a href="../vendor/vendor_register_form.php?id='<?php echo $ID; ?>'" class="nav-link">Agregar Tienda</a></li>
                     <li class="nav-item"><a href="../admin/admin_logout.php" class="nav-link">Cerrar Sesión</a></li>

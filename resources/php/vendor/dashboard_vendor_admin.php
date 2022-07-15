@@ -7,30 +7,35 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
-    <!-- Conexion con Bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <!-- Conexion con la hoja de estilo estilo-->
-    <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
-    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 95%;
+        }
+        .principal {
+            /* margin-top: 50px; */
+            background-color: white;
+            padding: 20px;
+            /* Siempre tomara el mismo ancho que el contenedor */
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <?php
-        //Verficación de conexión a la base de datos
-        session_start();
-        include("../conexion.php");
-
-        //Tomamos la id del Usuario logeado
-        $ID= $_SESSION["id"];
-
-        //Consulta para obtener todas las tiendas
-        $mostrar_todo = "SELECT id, nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
-        $ubicaciones = $conn->query($mostrar_todo); 
-    ?>
     <!-- SECCION NAVEGACIÓN-->
     <nav class="navbar navbar-dark bg-primary navbar-expand-md col-12">
         <div class="container">
-            <a href="user_main_dashboard.php" class="navbar-brand">
+            <a href="../admin/dashboard.php" class="navbar-brand">
                 <strong>UTARICO</strong>
             </a>
 
@@ -40,31 +45,36 @@
 
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="user_stats.php?idUser=<?php echo $ID ?>" class="nav-link">Estadísticas</a></li>
-                    <li class="nav-item"><a href="user_logout.php" class="nav-link">Cerrar Sesión</a></li>
+                    <li class="nav-item"><a href="estadistica.html" class="nav-link">Estadísticas</a></li>
+                    <li class="nav-item"><a href="main.html" class="nav-link">Mi Cuenta</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Sección dividida en dos partes -->
-    <section class="container mt-3">
+    <!-- Seccion principal donde se encuentran los articulos -->
+    <section class="principal">
         <div class="row">
-            <!--Primero parte izquierda, donde se muestran las tiendas-->
             <div class="col-12 col-md-6">
-                <!--Muestreo de las ubicaciones-->
+                <?php
+                    session_start();
+                    include("../conexion.php");
+                    $mostrar_todo = "SELECT id, nombreTienda, descripcionTienda, imagen, latitud, longitud FROM proyecto.ubicaciones";
+                    $ubicaciones = $conn->query($mostrar_todo); 
+                ?>
                 <?php foreach ($ubicaciones as $ubicacion) { ?>
                     <div class="card mb-3">
-                        <div class="d-flex bd-highlight">
-                            <div class="d-flex align-items-center bd-highlight">
-                                <img class="img-card rounded" src="../../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Tienda">
+                        <div class="row no-gutters">
+                            <div class="col-md-3">
+                                <img src="../../../img/<?php echo $ubicacion['imagen']; ?>" alt="Imagen Vendedor">
                             </div>
-                            <div class="p-3 w-100 bd-highlight">
-                                <div class="d-flex flex-column bd-highlight ">
-                                    <dic class="d-flex bd-highlight title-card"><?php echo $ubicacion['nombreTienda'];?></dic>
-                                    <div class="d-flex bd-highlight desc-card mb-3"><?php echo $ubicacion['descripcionTienda'];  ?></div>
-                                    <div class="d-flex bd-highlight ml-auto ">
-                                        <a href="../stats/stats_location_register.php?id='<?php echo $ubicacion['id']; ?>'&user= <?php echo $ID ?> " class="btn btn-primary">Ver Platos</a>
-                                    </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $ubicacion['nombreTienda'];?></h5>
+                                    <p class="card-text"><?php echo $ubicacion['descripcionTienda']; ?>, <?php echo $ubicacion['latitud']; ?>, <?php echo $ubicacion['longitud']; ?></p>
+                                    <a href="../dish/dish_dashboard.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-primary">Ver Platos</a>
+                                    <a href="../dish/dish_add.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-success">Añadir Plato</a>
+                                    <a href="vendor_delete.php?id='<?php echo $ubicacion['id']; ?>'" class="btn btn-danger">Eliminar tienda</a>
                                 </div>
                             </div>
                         </div>
@@ -72,28 +82,33 @@
                 <?php } ?>
             </div>
             <div class="col-12 col-md-6">
-                <!--Segunda parte derecha, mapa con las marcadores de las tiendas-->
                 <div id="map">
                     <script>
                         mapboxgl.accessToken = 'pk.eyJ1IjoiaW1hc2hpMSIsImEiOiJjbDMwemhrcmkwNHVuM2Nvd2loM28xMm84In0.i0qnFzBwR_QT8BCpVDyDeg';
                         const map = new mapboxgl.Map({
-                            container: 'map', // Contenedor del mapa
-                            style: 'mapbox://styles/mapbox/streets-v11',
-                            center: [-70.29613247361456, -18.489965686232765], // Posición inicial [lng, lat]
-                            zoom: 16.5,
+                            container: 'map', // container ID
+                            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                            center: [-70.29613247361456, -18.489965686232765], // starting position [lng, lat]
+                            zoom: 16.5, // starting zoom
                             maxZoom: 16.5,
                             minZoom: 16.5,
-                            dragPan: false, //Evitamos que se pueda mover el mapa
-                            dragRotate: false //Evitamos que se pueda rotar el mapa
+                            dragPan: false,
+                            dragRotate: false
                         });
+
+                        var lat = 0.0;
+                        var lng = 0.0;
                         map.on('style.load', () => {
+                            // Add a data source containing GeoJSON data.
+
+
                             map.addSource('maine', {
                                 'type': 'geojson',
                                 'data': {
                                     'type': 'Feature',
                                     'geometry': {
                                         'type': 'Polygon',
-                                        // Coordenadas para formar el polígono
+                                        // These coordinates outline Maine.
                                         'coordinates': [
                                             [
                                                 [-70.29690440097548, -18.492926142805615],
@@ -120,18 +135,18 @@
                                     }
                                 }
                             });
-                            // Capa de visualización del polígono
+                            // Add a new layer to visualize the polygon.
                             map.addLayer({
                                 'id': 'maine',
                                 'type': 'fill',
-                                'source': 'maine',
+                                'source': 'maine', // reference the data source
                                 'layout': {},
                                 'paint': {
-                                    'fill-color': '#0080ff', // Relleno de color
+                                    'fill-color': '#0080ff', // blue color fill
                                     'fill-opacity': 0.5
                                 }
                             });
-                            // Línea exterior de polígono
+                            // Add a black outline around the polygon.
                             map.addLayer({
                                 'id': 'outline',
                                 'type': 'line',
@@ -142,40 +157,39 @@
                                     'line-width': 3
                                 }
                             });
+                            /*
+                            map.on('click', function(e) {
+                                var coordinates = e.lngLat;
+                                var lat = coordinates.lat;
+                                var lng = e.lngLat.lng;
+                                document.getElementById("latitud").value = lat;
+                                document.getElementById("longitud").value = lng;
+                                new mapboxgl.Popup()
+                                    .setLngLat(coordinates)
+                                    .setHTML('you clicked here: <br/>' + coordinates)
+                                    .addTo(map);
+                            });
+                            */
                         });
-                        //Procedemos a colocar marcdores usando las ubicaciones guardadas.
-                        <?php foreach ($ubicaciones as $ubicacion) { ?>
-                            var marker1 = new mapboxgl.Marker()
-                                .setLngLat([<?php echo $ubicacion['longitud'];?>, <?php echo $ubicacion['latitud'];?>])
-                                .addTo(map);
-                        <?php } ?>
+                            <?php foreach ($ubicaciones as $ubicacion) { ?>
+                                var marker1 = new mapboxgl.Marker()
+                                    .setLngLat([<?php echo $ubicacion['longitud'];?>, <?php echo $ubicacion['latitud'];?>])
+                                    .addTo(map);
+                            <?php } ?>
                     </script>
                     
                 </div>
             </div>
         </div>
     </section>
-    <?php $conn->close(); ?>
+    <!-- Uso del aside -->
+
     <!-- Uso del footer -->
-    <footer class="text-center text-white bg-primary">
-        <div class="container p-4 pb-0">
-            <section class="">
-                <p class="d-flex justify-content-center align-items-center">
-                <span class="me-3">Registrate!</span>
-                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
-                    Resgistro
-                </button>
-                </p>
-            </section>
-        </div>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 Copyright: UTARICO
+    <footer class="pie-de-pagina text-center text-md-right bg-primary fixed-bottom text-white">
+        <div class="container">
+            <p class="m-0 py-3">UTARICO © </p>
         </div>
     </footer>
-
-    <!-- Conexion con jQuery y Bootstrap Bundle (incluido Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
 </body>
 

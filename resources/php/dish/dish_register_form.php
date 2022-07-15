@@ -15,8 +15,10 @@
 
 <body>
     <?php
+        session_start();
         include("../conexion.php");
         $id= $_GET['id'];
+        $ID=$_SESSION['id'];
         $mostrar_vendedor = "SELECT id, nombreTienda FROM proyecto.ubicaciones WHERE  id = $id";
         $vendedor = $conn->query($mostrar_vendedor);
         foreach ($vendedor as $vend_array) {

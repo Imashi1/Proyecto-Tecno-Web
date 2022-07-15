@@ -2,6 +2,8 @@
     //Comprobamos conexión a la base de datos
     include("../conexion.php");
 
+    session_start();
+    $ID = $_SESSION['id'];
     //Obtención de la id de usuario por medio del url
     $idUser = $_GET['idUser'];
 
@@ -58,17 +60,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- Conexion con la hoja de estilo estilo-->
     <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* Clase principal (hijo de contenedor) */
-        .principal {
-            /* margin-top: 50px; */
-            background-color: white;
-            padding: 20px;
-            /* Siempre tomara el mismo ancho que el contenedor */
-            width: 100%;
-        }
-    </style>    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
 </head>
 <body>
     <!--Header-->
@@ -91,7 +83,7 @@
         </div>
     </nav>
 
-    <section class="principal">
+    <section class="container mt-3">
         <div class="row">
             <div class="col-12 col-md-6">
                 <!--Gráfico que mostrará los 3 platos más consumidos por el usuario-->
@@ -103,7 +95,7 @@
                     <div class="card-body"> El plato más pedido es: <?php echo $platos['0'] ?? "No hay datos" ;?> </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 mb-3">
                 <!--Gráfico que mostrará los vendedores más visitados por el usuario-->
                 <div class="chartBox">
                     <canvas id="myChart2"></canvas>

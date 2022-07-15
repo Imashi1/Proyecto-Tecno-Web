@@ -14,7 +14,9 @@
 
 <body>
     <?php
+        session_start();
         include("../conexion.php");
+        $ID = $_SESSION['id'];
         $id= $_GET['id'];
         $mostrar_plato = "SELECT idPlato, nombrePlato, descripcionPlato, imagenPlato, precioPlato FROM proyecto.platos WHERE idPlato = $id";
         $platos = $conn->query($mostrar_plato);
