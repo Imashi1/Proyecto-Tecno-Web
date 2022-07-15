@@ -9,17 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- Conexion con la hoja de estilo estilo-->
     <link type="text/css" rel="stylesheet" href="../../css/estilo.css">
-    <title>UH TA' RICO</title>
-    <style>
-        .principal {
-            /* margin-top: 50px; */
-            background-color: white;
-            padding: 20px;
-            /* Siempre tomara el mismo ancho que el contenedor */
-            width: 100%;
-        }
-
-    </style>
+    <title>UTARICO Productos Tienda Usuario</title>
     <?php
     //Verificamos que estamos conectados a la base de datos
 		session_start();
@@ -28,6 +18,11 @@
         $idUbicacion = $_GET["id"];
 		$sql=mysqli_query($conn,"SELECT * FROM proyecto.usuarios where id='$ID' ");
 		$row  = mysqli_fetch_array($sql);
+
+        //Realizamos la consulta para obtener la tienda
+        $nombre_tienda = "SELECT nombreTienda, descripcionTienda FROM ubicaciones WHERE id = $idUbicacion";
+        $tienda = $conn->query($nombre_tienda);
+        foreach ($tienda as $datos_tienda){}
 
         //Realizamos la consulta para obtener todas las filas de la tabla productos
         $mostrar_todo = "SELECT idPlato, nombrePlato, descripcionPlato, precioPlato, imagenPlato FROM proyecto.platos WHERE idUbicaciones = $idUbicacion ";
@@ -59,28 +54,33 @@
         </nav>
     </header>
     
-    <div class="principal">
+    <section class="container mt-3">
         <div class="row">
+        <div class="text-center col-12">
+                <h2><?php echo $datos_tienda['nombreTienda'];?></h2>
+                <p class="hint-text"><?php echo $datos_tienda['descripcionTienda'];?></p>
+            </div>
+            <!--Procedemos a mostrar los platos-->
+            <?php foreach ($platos as $plato) { ?>
             <div class="col-12 col-md-6">
                 <div class="card mb-3">
-                    <div class="row no-gutters">
-                        <?php foreach ($platos as $plato) { ?>
-                            <div class="col-md-3">
-                            <img class="card-img-top" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-3 w-100 bd-highlight">
+                            <div class="d-flex flex-column bd-highlight ">
+                                <div class="d-flex bd-highlight title-card"><?php echo $plato['nombrePlato']; ?></div>
+                                <div class="d-flex bd-highlight desc-card mb-3"><?php echo $plato['descripcionPlato']; ?></div>
+                                <div class="d-flex bd-highlight prec-card">$<?php echo $plato['precioPlato']; ?></div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                <h5 class="card-title"><?php echo $plato['nombrePlato']; ?></h5>
-                                <p class="card-text"><?php echo $plato['descripcionPlato']; ?></p>
-                                <p class="card-text"><?php echo $plato['precioPlato']; ?></p>
-                                </div>
-                            </div>
-                        <?php } ?>
+                        </div>
+                        <div class="d-flex align-items-center bd-highlight">
+                            <img class="img-card rounded" src="../../../img/<?php echo $plato['imagenPlato']; ?>" alt="Imagen del Plato">
+                        </div>
                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div> 
-    </div>
+    </section>
     <?php 
     //Cerramos la conexión
     $conn->close(); 
@@ -91,9 +91,9 @@
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3">Registrate!</span>
-                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
-                    Resgistro
-                </button>
+                <a href="../html/user/user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                    Registro
+                </a>
                 </p>
             </section>
         </div>
