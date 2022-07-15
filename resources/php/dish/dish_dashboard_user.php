@@ -68,7 +68,13 @@
                             <div class="d-flex flex-column bd-highlight ">
                                 <div class="d-flex bd-highlight title-card"><?php echo $plato['nombrePlato']; ?></div>
                                 <div class="d-flex bd-highlight desc-card mb-3"><?php echo $plato['descripcionPlato']; ?></div>
-                                <div class="d-flex bd-highlight prec-card">$<?php echo $plato['precioPlato']; ?></div>
+                                <div class="d-flex bd-highlight justify-content-between">
+                                    <p class="prec-card">$<?php echo $plato['precioPlato']; ?></p>
+                                    <!-- Boton que faltaba para el stats de estadisticas -->
+                                    <!-- <a href="../stats/stats_dish_register.php?id='
+                                        <?php echo $plato['idPlato']; ?>'&user='<?php echo $row['id']; ?>'&ubicacion='<?php echo $idUbicacion; ?>
+                                        '" class="btn btn-sm btn-success">Agregar Plato</a> -->
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex align-items-center bd-highlight">
