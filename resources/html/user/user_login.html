@@ -36,9 +36,10 @@
     <section class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6">
-                <!--Redirección a autentificación del usuario-->
-                <form action="../../php/user/user_login.php" class="form-signin text-center bg-light my-3 p-3 border rounded" method="POST">
-                    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
+                <!--Redirección a autentificación del administrador-->
+                <form action="../../php/admin/admin_login.php" class="form-signin text-center bg-light my-3 p-3 border rounded" method="POST">
+                    <h2>Iniciar Sesion</h2>
+                    <p class="hint-text">Ingresa con tu correo</p>
                     <div class="form-group">
                         <label for="ingresoEmail" class="sr-only">Email</label>
                         <input type="email" name="correo" id="ingresoEmail" class="form-control" placeholder="Email" required autofocus>
@@ -49,8 +50,9 @@
                         <div class="checkbox mb-3">
                         </div>
                     </div>
-                    <button type="submit" name="guardar" class="btn btn-primary btn-block text-white">Ingresar</button>
-                    <div class="text-center mt-2">No tienes una cuenta? <a href="user_register.html">Registrate</a></div>
+                    <div class="form-group">
+                        <button type="submit" name="guardar" class="btn btn-primary btn-block text-white">Ingresar</button>
+                    </div>
                     <p class="mt-5 mb-3 text-muted">&copy; UTARICO ©</p>
                 </form>
             </div>
@@ -62,9 +64,9 @@
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3">Registrate!</span>
-                <button type="button" class="btn btn-outline-light rounded-pill ml-2">
-                    Resgistro
-                </button>
+                <a type="button" href="user_register.html" class="btn btn-outline-light rounded-pill ml-2">
+                    Registro
+                </a>
                 </p>
             </section>
         </div>
